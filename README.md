@@ -33,7 +33,3 @@ This app uses express, npm, mysql, and handlebars
 On the site create your burger and add/devour at will
 
 ## Video Demo 
-
-https://drive.google.com/file/d/1t-K3aTOWgZqVchbiEjhqsKwCbIIj744I/view
-
-https://drive.google.com/file/d/1e5bh2sy1HgrUBGfVz7FTzWzseukDutfS/view
