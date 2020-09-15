@@ -1,19 +1,23 @@
-li {
-    padding: 5px;
-    margin: 5px;
-    background: #faebd7;
+.jumbotron {
+    background-image: url("../img/burgerpic2.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: #000000;
+    color: #ffffff;
+    margin-top: 3%;
   }
-  
-  .label {
-    font-weight: bold;
+  #newburger {
+    color: #5c5c5c;
   }
-  
-  .create-update-form {
-    padding: 5px;
-    margin: 5px;
-    background: aqua;
+  #leftside {
+    background-color: #5c5c5c;
+    color: white;
+    text-align: center;
+    font-size: 1.3em;
   }
-  
-  .form-group {
-    margin-bottom: 5px;
+  #rightside {
+    background-color: #e49322;
+    color: white;
+    text-align: center;
+    font-size: 1.3em;
   }
