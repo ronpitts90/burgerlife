@@ -15,11 +15,9 @@
                         <option value="Nothing Selected" selected>Please Select a Sandwich</option>
                         <option value="Hamburger">Hamburger</option>
                         <option value="CheeseBurger">CheeseBurger</option>
-                        <option value="DoubleBfChz">Double Up (double meat and cheese)</option>
                         <option value="VeggieBurger">Veggie Burger</option>
-                        <option value="PulledPork">Pulled Pork Sandwich</option>
-                        <option value="ChichenClub">Chicken Club Sandwich</option>
-                        <option value="SteaknChz">Steak and Cheese Sandwich</option>
+                        <option value="ChickenBurger">Veggie Burger</option>
+                        <option value="ImpossibleBurger">Veggie Burger</option>
                     </select>
 
                     <button type="submit" class="btn btn-success" id="addburger">
@@ -40,7 +38,7 @@
                     {{!-- Not Devoured Yet --}}
                     <ul>
                         {{#each burgers}}
-                        {{#unless devoured}}
+                        {{#unless devour}}
 
                         <span><strong> {{this.id}} - {{this.burger_name}}</strong></span>
                         <button type="button" class="eatburger btn btn-warning" id="eatbutton" data-id="{{this.id}}"
@@ -63,7 +61,7 @@
                     {{!-- Devoured --}}
                     <ul>
                         {{#each burgers}}
-                        {{#if devoured}}
+                        {{#if devour}}
                         <span><strong> {{this.id}} - {{this.burger_name}}</strong></span>
                         <button type="button" class="trashburger btn btn-danger" id="trashbutton" data-id="{{this.id}}"
                             data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>

@@ -1,15 +1,15 @@
 
 $(function(){
-    $("create-form").on("submit", function(event){
+    $("#addburger").on("click", function(event){
         event.preventDefault(); 
-        
+        console.log("CREATE")
         var newBurger = {
             burger_name: $("#newburger")
             .val()
             .trim(), 
             devour:0
         }; 
-
+console.log("create", newBurger)
         $.ajax("/api/burgers/", {
             type: "POST",
             data: newBurger
@@ -39,6 +39,6 @@ $(function(){
         $.ajax({
             type: "DELETE", 
             url: "/api/burgers/" + id 
-        }).then(locatio.reload());
+        }).then(location.reload());
     });  
 }); 

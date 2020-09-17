@@ -1,54 +1,61 @@
-var express = require("express"); 
+var express = require("express");
 var router = express.Router();
-var burger = require("../models/burger.js"); 
+var burger = require("../models/burger.js");
 
-router.get("/", function(req, res) {
-    burger.all(function(data) {
-      var hbsObject = {
-        burgers: data 
-      };
-      console.log(hbsObject);
-      res.render("index", hbsObject);
-    });
-  });   
-  
-  router.post("/api/burgers", function(req, res) {
-    burger.create([
-      "burger_name", "devour"
-    ], [
-      req.body.burger_name, req.body.devour
-    ], function(result) {
+router.get("/", function (req, res) {
+  burger.all(function (data) {
+    var hbsObject = {
+      burgers: data,
+    };
+    console.log(hbsObject);
+    res.render("index", hbsObject);
+  });
+});
+
+router.post("/api/burgers", function (req, res) {
+  console.log("POST:", req.body);
+  burger.create(
+    ["burger_name", "devour"],
+    [
+      //  "test", 0
+      req.body.burger_name,
+      req.body.devour,
+    ],
+    function (result) {
       // Send back the ID of the new quote
       res.json({ id: result.insertId });
-    });
+    }
+  );
+});
+
+router.put("/api/burgers/:id", function (req, res) {
+  var condition = "id = " + req.params.id;
+
+  console.log("condition", condition);
+
+  // burger.update({ devour: req.body.devour}, condition, function(result) {
+  burger.update({ devour: 1 }, condition, function (result) {
+    console.log(result);
+    if (result.affectedRows === 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    } else {
+      res.status(200).json("done");
+    }
   });
-  
-  router.put("/api/burgers/:id", function(req, res) {
-    var condition = "id = " + req.params.id;
-  
-    console.log("condition", condition);
-  
-    burger.update({ devour: req.body.devour}, condition, function(result) {
-      if (result.changedRows == 0) {
-        // If no rows were changed, then the ID must not exist, so 404
-        return res.status(404).end();
-      } else {
-        res.status(200).end();
-      }
-    });
+});
+
+router.delete("/api/burgers/:id", function (req, res) {
+  var condition = "id =" + req.params.id;
+  console.log("condition", condition);
+
+  burger.delete(condition, function (result) {
+    if (result.changedRows === 0) {
+      return res.status(404).end();
+    } else {
+      res.status(200).end();
+    }
   });
+});
 
-router.delete("/api/burgers/:id", function(req, res){
-    var condition = "id =" + req.params.id;
-    console.log("condition", condition); 
-
-    burger.delete(condition , function(result){
-        if (result.changedRows === 0) {
-            return res.status(404).end();
-          } else {
-            res.status(200).end();
-          }
-      }); 
-    }); 
-
-module.exports = router; 
+module.exports = router;
