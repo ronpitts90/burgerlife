@@ -1,6 +1,12 @@
 var express = require("express");
 var exphbs = require("express-handlebars"); 
 
+var compression = require('compression')
+ 
+ 
+// compress responses
+app.use(compression())
+
 
 var app = express(); 
 var PORT = process.env.PORT || 8000; 
